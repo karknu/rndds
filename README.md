@@ -38,8 +38,8 @@ configuration and start the broadcasting.
 
 1. Start the slaves
    For each slave do:
-     * stack exec rndds-exe -- -h <ip address to use> -p <port to use>
-     * stack exec rndds-exe -- -h <ip address to use> -p <another port to use>
+     * stack exec rndds-exe -- -h "ip address to use" -p "port to use"
+     * stack exec rndds-exe -- -h "another ip address to use" -p "port to use"
 2. Start the master, and run for 180s.
    stack exec rndds-exe -- -m -k180
 
