@@ -114,7 +114,6 @@ instance Show PrmMessageId where
   show i = printf "%s %ld" (show $ pmiNid i) (unSeq $ pmiSeq i)
 
 instance NFData PrmMessageId
-
 instance Binary PrmMessageId
 
 -- | A message broadcasted to all active peers.
@@ -157,7 +156,6 @@ data PrmGossipMessage = PrmGossipMessage {
 } deriving (Typeable, Generic, Show)
 
 instance NFData PrmGossipMessage
-
 instance Binary PrmGossipMessage
 
 -- | Create a 'PrmCtx' structure, and register the "prmListenser" service.
@@ -179,7 +177,7 @@ prmInitialize  seed fanout gossipInterval quiescense = do
 
   return ctx
 
--- | Connect to the "prmListenser" service on the ginve 'NodeId'
+-- | Connect to the "prmListenser" service on the given 'NodeId'
 prmWaitForPeer :: MVar PrmCtx -> NodeId -> Process ()
 prmWaitForPeer ctx nid = do
   whereisRemoteAsync nid "prmListener"
@@ -382,5 +380,4 @@ prmReceiveTimeout ctx delay = do
              say' $ printf "inserting marker for missing packet %s" (show mid)
              return $ M.insert mid Nothing m -- Insert a marker so we can start asking this
            Just _  -> return m               -- We have this packet
-
 
